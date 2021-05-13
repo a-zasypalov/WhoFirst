@@ -1,0 +1,6 @@
+framework module Pods_WhoFirst_WhoFirstUITests {
+  umbrella header "Pods-WhoFirst-WhoFirstUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
