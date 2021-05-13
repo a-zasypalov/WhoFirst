@@ -37,6 +37,35 @@ class ChallengeViewModel : ObservableObject {
             }
     }
     
+    func tryToWinToday() {
+        if(current != nil) {
+            if(!current!.checked && Date.init() >= Date(timeIntervalSince1970: TimeInterval(current!.datetime) / 1000)) {
+                
+                status = ChallengeViewModel.STATUS_UNDEFINED
+                
+                db.collection("records").document(self.challenge!.records.last!)
+                    .updateData([
+                        Record.checkedField : true,
+                        Record.winnersField : [UserDefaults.standard.string(forKey: UserDefaultsKeys.userId)]
+                    ])
+                
+                var dateComponent = DateComponents()
+                dateComponent.day = 1
+                
+                let newDate = Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Calendar.current.date(byAdding: dateComponent, to: Date.init())!)
+                
+                db.collection("records").addDocument(data: [
+                    Record.checkedField : false,
+                    Record.winnersField : Array<String>(),
+                    Record.datetimeField : Int64((newDate!.timeIntervalSince1970 * 1000.0).rounded())
+                ])
+                
+                getChallenge()
+                
+            }
+        }
+    }
+    
     private func getCurrentRecord(id: String, prevId: String?) {
         db.collection("records").document(id)
             .getDocument() { (documentSnapshot, err) in
@@ -46,7 +75,7 @@ class ChallengeViewModel : ObservableObject {
                     let now = Date.init()
                     let df = DateFormatter()
                     df.dateFormat = "dd"
-                                        
+                    
                     if(lastRecord != nil) {
                         if(df.string(from: now) == df.string(from: Date(timeIntervalSince1970: TimeInterval(lastRecord!.datetime) / 1000))) {
                             //If the record is in future
@@ -73,7 +102,11 @@ class ChallengeViewModel : ObservableObject {
     
     private func checkStatus() {
         if(current != nil) {
-            if(!current!.checked && Date.init() > Date(timeIntervalSince1970: TimeInterval(current!.datetime) / 1000)) {
+            let now = Date.init()
+            let df = DateFormatter()
+            df.dateFormat = "dd"
+            
+            if(!current!.checked && df.string(from: now) == df.string(from: Date(timeIntervalSince1970: TimeInterval(current!.datetime) / 1000))) {
                 self.status = ChallengeViewModel.STATUS_PLAY
                 self.image = "UnicornFoxy"
             } else {
@@ -88,4 +121,5 @@ class ChallengeViewModel : ObservableObject {
             
         }
     }
+    
 }

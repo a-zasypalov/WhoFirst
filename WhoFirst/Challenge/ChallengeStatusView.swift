@@ -41,15 +41,14 @@ struct ChallengeStatusView: View {
                 Text(viewModel.challenge!.title)
                     .fontWeight(.medium)
                     .font(.largeTitle)
-                    .padding(.bottom, 20)
-                
-                Spacer()
+                    .padding(.bottom, 2)
                 
                 if(viewModel.status == ChallengeViewModel.STATUS_PLAY) {
+                    Spacer()
                     Button(action: {
-                        
+                        viewModel.tryToWinToday()
                     }){
-                        Text("Try").font(.headline)
+                        Text(viewModel.challenge!.button).font(.headline)
                             .foregroundColor(.white)
                             .padding()
                             .frame(width: 220, height: 60)
@@ -57,9 +56,13 @@ struct ChallengeStatusView: View {
                             .cornerRadius(15.0)
                     }
                 } else if(viewModel.status == ChallengeViewModel.STATUS_WINNER) {
-                    Text("Winner")
-                } else {
-                    Text("Loser")
+                    Text(viewModel.challenge!.winnerText)
+                        .fontWeight(.medium)
+                        .font(.largeTitle)
+                } else if(viewModel.status == ChallengeViewModel.STATUS_LOSER) {
+                    Text(viewModel.challenge!.loserText)
+                        .fontWeight(.medium)
+                        .font(.largeTitle)
                 }
                 
             }.padding()
