@@ -41,7 +41,7 @@ struct ChallengeStatusView: View {
                 Text(viewModel.challenge!.title)
                     .fontWeight(.medium)
                     .font(.largeTitle)
-                    .padding(.bottom, 2)
+                    .padding(.bottom, 5)
                 
                 if(viewModel.status == ChallengeViewModel.STATUS_PLAY) {
                     Spacer()
@@ -63,9 +63,45 @@ struct ChallengeStatusView: View {
                     Text(viewModel.challenge!.loserText)
                         .fontWeight(.medium)
                         .font(.largeTitle)
+                } else {
+                    Spacer()
+                    ProgressView()
                 }
                 
             }.padding()
+            .sheet(isPresented: $viewModel.openAlert) {
+                VStack(alignment: .center) {
+                    Image(viewModel.alertImage)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 250, height: 250)
+                        .padding([.top, .bottom], 40)
+                    
+                    Text(viewModel.alertText)
+                        .fontWeight(.medium)
+                        .font(.largeTitle)
+                        .multilineTextAlignment(.center)
+                        .padding(.bottom, 5)
+                    
+                    Text(viewModel.alertSubtitle)
+                        .fontWeight(.regular)
+                        .font(.title)
+                        .multilineTextAlignment(.center)
+                        .padding(.bottom, 5)
+                    
+                    Spacer()
+                    Button(action: {
+                        viewModel.openAlert = false
+                    }){
+                        Text(viewModel.alertButtonText).font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 220, height: 60)
+                            .background(blueColor)
+                            .cornerRadius(15.0)
+                    }
+                }.padding()
+            }
         }
     }
     

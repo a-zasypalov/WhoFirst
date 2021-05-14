@@ -13,18 +13,19 @@ struct ContentView: View {
     
     @State var user: User? = UserDefaults.standard.dictionary(forKey: UserDefaultsKeys.userKey).flatMap { User(data: $0)} ?? nil
     @State var needLogin = UserDefaults.standard.dictionary(forKey: UserDefaultsKeys.userKey) == nil
+    @State var showsAlert = false
     
     var body: some View {
         NavigationView {
             if(user == nil) {
                 VStack(alignment: .center) {
-                    Image("StartImage")
+                    Image("UnicornVine")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 350, height: 350)
                         .padding(.bottom, 20)
                     
-                    Text("Please, login")
+                    Text("Пожалуйста, авторизуйтесь")
                         .fontWeight(.medium)
                         .font(.largeTitle)
                         .padding(.bottom, 20)
@@ -32,7 +33,7 @@ struct ContentView: View {
                     Button(action: {
                         needLogin = true
                     }, label: {
-                        Text("Login").font(.headline)
+                        Text("Вход").font(.headline)
                             .foregroundColor(.white)
                             .padding()
                             .frame(width: 220, height: 60)
@@ -42,15 +43,21 @@ struct ContentView: View {
                     
                 }.padding()
                 .navigationBarItems(
-                    trailing: Button(action: {}) {Text("Logout").foregroundColor(lightGreyColor)}.disabled(true)
+                    trailing: Button(action: {}) {Text("Выход").foregroundColor(lightGreyColor)}.disabled(true)
                 )
             } else {
                 ChallengeStatusView()
                     .navigationBarItems(
                         trailing: Button(action: {
-                            self.user = nil
-                            UserDefaults.standard.set(nil, forKey: UserDefaultsKeys.userKey)
-                        }) {Text("Logout").foregroundColor(buttonColor)}.disabled(false)
+                            Alert(title: Text("Выйти из профиля?"),
+                                  primaryButton: .destructive(Text("Да")) {
+                                    self.user = nil
+                                    UserDefaults.standard.set(nil, forKey: UserDefaultsKeys.userKey)
+                                  },
+                                  secondaryButton: .cancel(Text("Отмена"))
+                            ).present()
+                        }) {Text("Выход").foregroundColor(buttonColor)}
+                        .disabled(false)
                     )
             }
         }.sheet(isPresented: $needLogin) {

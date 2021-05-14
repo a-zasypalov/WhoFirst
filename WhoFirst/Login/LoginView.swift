@@ -30,25 +30,25 @@ struct LoginView: View {
         if(viewModel.user == nil) {
             ScrollView {
                 VStack {
-                    Text("Who First?")
+                    Text("Кто первый?")
                         .fontWeight(.semibold)
                         .padding([.top, .bottom], 20)
                         .font(.largeTitle)
                     
-                    Image("StartImage")
+                    Image("UnicornVine")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 350, height: 350)
+                        .frame(width: 250, height: 250)
                         .padding(.bottom, 20)
                     
                     VStack(alignment: .center, spacing: 20){
-                        TextField("Login", text: self.$login)
+                        TextField("Логин", text: self.$login)
                             .padding()
                             .background(colorScheme == .light ? lightGreyColor : darkGreyColor)
                             .cornerRadius(5)
                             .padding(.bottom, 15)
                         
-                        SecureField("Password", text: self.$password)
+                        SecureField("Пароль", text: self.$password)
                             .padding()
                             .background(colorScheme == .light ? lightGreyColor : darkGreyColor)
                             .cornerRadius(5)
@@ -57,7 +57,7 @@ struct LoginView: View {
                         Button(action: {
                             viewModel.authorize(login: self.login, pass: self.password)
                         }, label: {
-                            Text("Login").font(.headline)
+                            Text("Войти").font(.headline)
                                 .foregroundColor(.white)
                                 .padding()
                                 .frame(width: 220, height: 60)
@@ -70,7 +70,7 @@ struct LoginView: View {
             }
         } else {
             VStack(alignment: .center, spacing: 20){
-                Text("Login successful!")
+                Text("Круто, поехали!")
                     .fontWeight(.medium)
                     .padding([.top, .bottom], 20)
                     .font(.largeTitle)
@@ -78,14 +78,14 @@ struct LoginView: View {
                 Image("UnicornOk")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 100, height: 100)
+                    .frame(width: 250, height: 250)
                     .padding(.bottom, 20)
                 
                 Button(action: {
                     self.user = viewModel.user
                     self.isActive.toggle()
                 }, label: {
-                    Text("Go to app").font(.headline)
+                    Text("Вперед").font(.headline)
                         .foregroundColor(.white)
                         .padding()
                         .frame(width: 220, height: 60)

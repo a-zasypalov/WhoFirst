@@ -7,6 +7,7 @@
 
 import Firebase
 import FirebaseFirestore
+import SwiftUI
 
 class ChallengeViewModel : ObservableObject {
     
@@ -20,11 +21,17 @@ class ChallengeViewModel : ObservableObject {
     @Published var status = STATUS_UNDEFINED
     @Published var image = "UnicornQuestion"
     
+    @Published var openAlert = false
+    var alertImage = "UnicornQuestion"
+    var alertText = "Test"
+    var alertSubtitle = "Test"
+    var alertButtonText = "Okay"
+    
     private let db = Firestore.firestore()
     
     func getChallenge() {
         db.collection("challenges").document("Shower")
-            .getDocument() { (documentSnapshot, err) in
+            .addSnapshotListener() { (documentSnapshot, err) in
                 if(documentSnapshot != nil && documentSnapshot?.data() != nil) {
                     self.challenge = Challenge(data: documentSnapshot!.data()!)
                     
@@ -38,30 +45,63 @@ class ChallengeViewModel : ObservableObject {
     }
     
     func tryToWinToday() {
-        if(current != nil) {
-            if(!current!.checked && Date.init() >= Date(timeIntervalSince1970: TimeInterval(current!.datetime) / 1000)) {
+        if(self.current != nil) {
+            if(!self.current!.checked && Date.init() >= Date(timeIntervalSince1970: TimeInterval(self.current!.datetime) / 1000)) {
+                self.status = ChallengeViewModel.STATUS_UNDEFINED
                 
-                status = ChallengeViewModel.STATUS_UNDEFINED
-                
-                db.collection("records").document(self.challenge!.records.last!)
-                    .updateData([
-                        Record.checkedField : true,
-                        Record.winnersField : [UserDefaults.standard.string(forKey: UserDefaultsKeys.userId)]
-                    ])
-                
-                var dateComponent = DateComponents()
-                dateComponent.day = 1
-                
-                let newDate = Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Calendar.current.date(byAdding: dateComponent, to: Date.init())!)
-                
-                db.collection("records").addDocument(data: [
-                    Record.checkedField : false,
-                    Record.winnersField : Array<String>(),
-                    Record.datetimeField : Int64((newDate!.timeIntervalSince1970 * 1000.0).rounded())
-                ])
-                
-                getChallenge()
-                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    
+                    self.db.collection("records").document(self.challenge!.records.last!)
+                        .updateData([
+                            Record.checkedField : true,
+                            Record.winnersField : [UserDefaults.standard.string(forKey: UserDefaultsKeys.userId)]
+                        ]) { err in
+                            if err != nil {
+                                self.alertImage = "UnicornNo"
+                                self.alertText = "Что-то пошло не так!"
+                                self.alertButtonText = "Назад"
+                                self.openAlert = true
+                            } else {
+                                var dateComponent = DateComponents()
+                                dateComponent.day = 1
+                                let newDate = Calendar.current.date(bySettingHour: Int.random(in: 12..<19), minute: Int.random(in: 0..<59), second: Int.random(in: 0..<59), of: Calendar.current.date(byAdding: dateComponent, to: Date.init())!)
+                                
+                                var newDoc: DocumentReference? = nil
+                                newDoc = self.db.collection("records").addDocument(data: [
+                                    Record.checkedField : false,
+                                    Record.winnersField : Array<String>(),
+                                    Record.datetimeField : Int64((newDate!.timeIntervalSince1970 * 1000.0).rounded())
+                                ]) { err in
+                                    if err != nil {
+                                        self.alertImage = "UnicornNo"
+                                        self.alertText = "Что-то пошло не так!"
+                                        self.alertButtonText = "Назад"
+                                        self.openAlert = true
+                                    } else {
+                                        var newChallenges = self.challenge?.records
+                                        newChallenges?.append(newDoc!.documentID)
+                                        
+                                        self.db.collection("challenges").document("Shower").updateData([Challenge.recordsField: newChallenges!])
+                                        
+                                        self.alertImage = "UnicornOk"
+                                        self.alertText = self.challenge!.winnerAlertTitle
+                                        self.alertSubtitle = ""
+                                        self.alertButtonText = self.challenge!.winnerAlertButton
+                                        self.openAlert = true
+                                        
+                                        self.getChallenge()
+                                    }
+                                }
+                            }
+                            
+                        }
+                }
+            } else {
+                self.alertImage = "UnicornAgain"
+                self.alertText = self.challenge!.faultTryTitle
+                self.alertSubtitle = self.challenge!.faultTrySubtitle
+                self.alertButtonText = self.challenge!.faultTryButton
+                self.openAlert = true
             }
         }
     }
