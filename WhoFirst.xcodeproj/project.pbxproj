@@ -25,6 +25,7 @@
 		AC7706AD264D8ABC00D48192 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7706AC264D8ABC00D48192 /* Challenge.swift */; };
 		AC7706AF264D8EE100D48192 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7706AE264D8EE100D48192 /* Record.swift */; };
 		ACABB074264D2B9100A1EF18 /* ChallengeStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACABB073264D2B9100A1EF18 /* ChallengeStatusView.swift */; };
+		ACCAD327264F261D0072237E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCAD326264F261D0072237E /* Reachability.swift */; };
 		EFF255DD92DE3C5756CC5E44 /* Pods_WhoFirstTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5743215C947BFA2749EF69 /* Pods_WhoFirstTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		AC7706AC264D8ABC00D48192 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		AC7706AE264D8EE100D48192 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		ACABB073264D2B9100A1EF18 /* ChallengeStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeStatusView.swift; sourceTree = "<group>"; };
+		ACCAD326264F261D0072237E /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		AE7C24E3ACC7785641766138 /* Pods-WhoFirstTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoFirstTests.release.xcconfig"; path = "Target Support Files/Pods-WhoFirstTests/Pods-WhoFirstTests.release.xcconfig"; sourceTree = "<group>"; };
 		E770EC3575B0534274B11418 /* Pods-WhoFirst-WhoFirstUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoFirst-WhoFirstUITests.release.xcconfig"; path = "Target Support Files/Pods-WhoFirst-WhoFirstUITests/Pods-WhoFirst-WhoFirstUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EE1D0B032F5CE9A11BA37B78 /* Pods_WhoFirst.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhoFirst.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,6 +173,7 @@
 				AC763CE3264C85BC00D337C2 /* Info.plist */,
 				AC763D05264C85C400D337C2 /* GoogleService-Info.plist */,
 				AC763CE0264C85BC00D337C2 /* Preview Content */,
+				ACCAD326264F261D0072237E /* Reachability.swift */,
 			);
 			path = WhoFirst;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 				AC7706AB264D88F200D48192 /* ChallengeViewModel.swift in Sources */,
 				AC763CDD264C85BB00D337C2 /* ContentView.swift in Sources */,
 				AC16B432264D2CD400D63AE6 /* LoginView.swift in Sources */,
+				ACCAD327264F261D0072237E /* Reachability.swift in Sources */,
 				AC16B434264D356400D63AE6 /* LoginViewModel.swift in Sources */,
 				AC763CDB264C85BB00D337C2 /* WhoFirstApp.swift in Sources */,
 				AC16B43A264D382C00D63AE6 /* User.swift in Sources */,

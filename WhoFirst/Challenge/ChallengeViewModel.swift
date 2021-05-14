@@ -23,9 +23,9 @@ class ChallengeViewModel : ObservableObject {
     
     @Published var openAlert = false
     var alertImage = "UnicornQuestion"
-    var alertText = "Test"
-    var alertSubtitle = "Test"
-    var alertButtonText = "Okay"
+    var alertText = ""
+    var alertSubtitle = ""
+    var alertButtonText = ""
     
     private let db = Firestore.firestore()
     
@@ -51,50 +51,73 @@ class ChallengeViewModel : ObservableObject {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                     
-                    self.db.collection("records").document(self.challenge!.records.last!)
-                        .updateData([
-                            Record.checkedField : true,
-                            Record.winnersField : [UserDefaults.standard.string(forKey: UserDefaultsKeys.userId)]
-                        ]) { err in
-                            if err != nil {
-                                self.alertImage = "UnicornNo"
-                                self.alertText = "Что-то пошло не так!"
-                                self.alertButtonText = "Назад"
-                                self.openAlert = true
-                            } else {
-                                var dateComponent = DateComponents()
-                                dateComponent.day = 1
-                                let newDate = Calendar.current.date(bySettingHour: Int.random(in: 12..<19), minute: Int.random(in: 0..<59), second: Int.random(in: 0..<59), of: Calendar.current.date(byAdding: dateComponent, to: Date.init())!)
-                                
-                                var newDoc: DocumentReference? = nil
-                                newDoc = self.db.collection("records").addDocument(data: [
-                                    Record.checkedField : false,
-                                    Record.winnersField : Array<String>(),
-                                    Record.datetimeField : Int64((newDate!.timeIntervalSince1970 * 1000.0).rounded())
-                                ]) { err in
-                                    if err != nil {
-                                        self.alertImage = "UnicornNo"
-                                        self.alertText = "Что-то пошло не так!"
-                                        self.alertButtonText = "Назад"
-                                        self.openAlert = true
-                                    } else {
-                                        var newChallenges = self.challenge?.records
-                                        newChallenges?.append(newDoc!.documentID)
-                                        
-                                        self.db.collection("challenges").document("Shower").updateData([Challenge.recordsField: newChallenges!])
-                                        
-                                        self.alertImage = "UnicornOk"
-                                        self.alertText = self.challenge!.winnerAlertTitle
-                                        self.alertSubtitle = ""
-                                        self.alertButtonText = self.challenge!.winnerAlertButton
-                                        self.openAlert = true
-                                        
-                                        self.getChallenge()
+                    if Reachability.isConnectedToNetwork(){
+                        self.db.collection("records").document(self.challenge!.records.last!)
+                            .updateData([
+                                Record.checkedField : true,
+                                Record.winnersField : [UserDefaults.standard.string(forKey: UserDefaultsKeys.userId)]
+                            ]) { err in
+                                if err != nil {
+                                    self.alertImage = "UnicornNo"
+                                    self.alertText = "Что-то пошло не так!"
+                                    self.alertButtonText = "Назад"
+                                    self.openAlert = true
+                                } else {
+                                    var dateComponent = DateComponents()
+                                    dateComponent.day = 1
+                                    let newDate = Calendar.current.date(bySettingHour: Int.random(in: 12..<19), minute: Int.random(in: 0..<59), second: Int.random(in: 0..<59), of: Calendar.current.date(byAdding: dateComponent, to: Date.init())!)
+                                    
+                                    var newDoc: DocumentReference? = nil
+                                    newDoc = self.db.collection("records").addDocument(data: [
+                                        Record.checkedField : false,
+                                        Record.winnersField : Array<String>(),
+                                        Record.datetimeField : Int64((newDate!.timeIntervalSince1970 * 1000.0).rounded())
+                                    ]) { err in
+                                        if err != nil {
+                                            self.alertImage = "UnicornNo"
+                                            self.alertText = "Что-то пошло не так!"
+                                            self.alertButtonText = "Назад"
+                                            self.openAlert = true
+                                        } else {
+                                            var newChallenges = self.challenge?.records
+                                            newChallenges?.append(newDoc!.documentID)
+                                            
+                                            self.db.collection("challenges").document("Shower").updateData([Challenge.recordsField: newChallenges!])
+                                            
+                                            var savedUser = UserDefaults.standard.dictionary(forKey: UserDefaultsKeys.userKey).flatMap { User(data: $0)} ?? nil
+                                            savedUser!.scores = String(Int64(savedUser!.scores)! + 1)
+                                            UserDefaults.standard.setValue(savedUser!.propertyListRepresentation, forKey: UserDefaultsKeys.userKey)
+                                            
+                                            self.db.collection("users").document(UserDefaults.standard.string(forKey: UserDefaultsKeys.userId)!)
+                                                .updateData([
+                                                    User.scoresField : savedUser!.scores,
+                                                ]) { err in
+                                                    if err != nil {
+                                                        self.alertImage = "UnicornNo"
+                                                        self.alertText = "Что-то пошло не так!"
+                                                        self.alertButtonText = "Назад"
+                                                        self.openAlert = true
+                                                    } else {
+                                                        self.alertImage = "UnicornOk"
+                                                        self.alertText = self.challenge!.winnerAlertTitle
+                                                        self.alertSubtitle = ""
+                                                        self.alertButtonText = self.challenge!.winnerAlertButton
+                                                        self.openAlert = true
+                                                        
+                                                        self.getChallenge()
+                                                    }
+                                                }
+                                        }
                                     }
                                 }
                             }
-                            
-                        }
+                        
+                    } else {
+                        self.alertImage = "UnicornNo"
+                        self.alertText = "Что-то пошло не так!"
+                        self.alertButtonText = "Назад"
+                        self.openAlert = true
+                    }
                 }
             } else {
                 self.alertImage = "UnicornAgain"

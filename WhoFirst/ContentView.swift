@@ -13,7 +13,6 @@ struct ContentView: View {
     
     @State var user: User? = UserDefaults.standard.dictionary(forKey: UserDefaultsKeys.userKey).flatMap { User(data: $0)} ?? nil
     @State var needLogin = UserDefaults.standard.dictionary(forKey: UserDefaultsKeys.userKey) == nil
-    @State var showsAlert = false
     
     var body: some View {
         NavigationView {
@@ -48,21 +47,38 @@ struct ContentView: View {
             } else {
                 ChallengeStatusView()
                     .navigationBarItems(
-                        trailing: Button(action: {
-                            Alert(title: Text("Выйти из профиля?"),
-                                  primaryButton: .destructive(Text("Да")) {
-                                    self.user = nil
-                                    UserDefaults.standard.set(nil, forKey: UserDefaultsKeys.userKey)
-                                  },
-                                  secondaryButton: .cancel(Text("Отмена"))
-                            ).present()
-                        }) {Text("Выход").foregroundColor(buttonColor)}
-                        .disabled(false)
+                        trailing: AlertButtonExit(user: $user)
+                            .disabled(false)
                     )
             }
-        }.sheet(isPresented: $needLogin) {
+        }.sheet(isPresented: $needLogin, onDismiss: {
+            if(self.user == nil) {
+                self.user = UserDefaults.standard.dictionary(forKey: UserDefaultsKeys.userKey).flatMap { User(data: $0)} ?? nil
+            }
+        }) {
             LoginView(isActive: $needLogin, user: $user)
         }
+    }
+}
+
+struct AlertButtonExit: View {
+    @Binding var user: User?
+    @State var isPresented = false
+    let buttonColor = Color(red: 77.0/255.0, green: 97.0/255.0, blue: 252.0/255.0, opacity: 1.0)
+    
+    
+    var body: some View {
+        Button(action: {
+            self.isPresented = true
+        }) {Text("Выход").foregroundColor(buttonColor)}
+        .alert(isPresented: self.$isPresented){
+            Alert(title: Text("Выйти из профиля?"),
+                  primaryButton: .destructive(Text("Ок")) {
+                    self.user = nil
+                    UserDefaults.standard.set(nil, forKey: UserDefaultsKeys.userKey)
+                  },
+                  secondaryButton: .cancel(Text("Отмена"))
+            )}
     }
 }
 
