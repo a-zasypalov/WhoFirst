@@ -63,6 +63,23 @@ struct ChallengeStatusView: View {
                     Text(viewModel.challenge!.loserText)
                         .fontWeight(.medium)
                         .font(.largeTitle)
+                } else if(viewModel.status == ChallengeViewModel.OLD_EVENT) {
+                    Spacer()
+                    Button(action: {
+                        viewModel.createNewRecord()
+                    }){
+                        Text("Продолжить завтра").font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 220, height: 60)
+                            .background(blueColor)
+                            .cornerRadius(15.0)
+                    }
+                } else if(viewModel.status == ChallengeViewModel.STATUS_WAIT) {
+                    Text("Завтра игра продолжится")
+                        .fontWeight(.medium)
+                        .multilineTextAlignment(.center)
+                        .font(.largeTitle)
                 } else {
                     Spacer()
                     ProgressView()
