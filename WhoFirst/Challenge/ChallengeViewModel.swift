@@ -31,8 +31,10 @@ class ChallengeViewModel : ObservableObject {
     
     private let db = Firestore.firestore()
     
+    let showerChallenge = "Shower-test"
+    
     func getChallenge() {
-        db.collection("challenges").document("Shower")
+        db.collection("challenges").document(showerChallenge)
             .addSnapshotListener() { (documentSnapshot, err) in
                 if(documentSnapshot != nil && documentSnapshot?.data() != nil) {
                     self.challenge = Challenge(data: documentSnapshot!.data()!)
@@ -84,7 +86,7 @@ class ChallengeViewModel : ObservableObject {
                                             var newChallenges = self.challenge?.records
                                             newChallenges?.append(newDoc!.documentID)
                                             
-                                            self.db.collection("challenges").document("Shower").updateData([Challenge.recordsField: newChallenges!])
+                                            self.db.collection("challenges").document(self.showerChallenge).updateData([Challenge.recordsField: newChallenges!])
                                             
                                             var savedUser = UserDefaults.standard.dictionary(forKey: UserDefaultsKeys.userKey).flatMap { User(data: $0)} ?? nil
                                             savedUser!.scores = String(Int64(savedUser!.scores)! + 1)
@@ -166,7 +168,7 @@ class ChallengeViewModel : ObservableObject {
                                     var newChallenges = self.challenge?.records
                                     newChallenges?.append(newDoc!.documentID)
                                     
-                                    self.db.collection("challenges").document("Shower-test").updateData([Challenge.recordsField: newChallenges!])
+                                    self.db.collection("challenges").document(self.showerChallenge).updateData([Challenge.recordsField: newChallenges!])
                                     
                                     self.alertImage = "UnicornCool"
                                     self.alertText = "Игра продолжается!"
@@ -227,10 +229,10 @@ class ChallengeViewModel : ObservableObject {
             if(!current!.checked && df.string(from: now) == df.string(from: Date(timeIntervalSince1970: TimeInterval(current!.datetime) / 1000))) {
                 self.status = ChallengeViewModel.STATUS_PLAY
                 self.image = "UnicornFoxy"
-            } else if(now > Date(timeIntervalSince1970: TimeInterval(current!.datetime) / 1000)) {
+            } else if(current!.winners.isEmpty && now > Date(timeIntervalSince1970: TimeInterval(current!.datetime) / 1000)) {
                 if(!current!.checked) {
-                self.status = ChallengeViewModel.OLD_EVENT
-                self.image = "UnicornOops"
+                    self.status = ChallengeViewModel.OLD_EVENT
+                    self.image = "UnicornOops"
                 } else {
                     self.status = ChallengeViewModel.STATUS_WAIT
                     self.image = "UnicornAgain"

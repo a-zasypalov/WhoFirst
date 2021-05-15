@@ -78,8 +78,8 @@
             filePath = "WhoFirst/Challenge/ChallengeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
             landmarkName = "getCurrentRecord(id:prevId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +94,8 @@
             filePath = "WhoFirst/Challenge/ChallengeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
             landmarkName = "getCurrentRecord(id:prevId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -110,8 +110,8 @@
             filePath = "WhoFirst/Challenge/ChallengeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "checkStatus()"
             landmarkType = "7">
          </BreakpointContent>
@@ -126,8 +126,8 @@
             filePath = "WhoFirst/Challenge/ChallengeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
             landmarkName = "checkStatus()"
             landmarkType = "7">
          </BreakpointContent>
@@ -142,8 +142,8 @@
             filePath = "WhoFirst/Challenge/ChallengeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "checkStatus()"
             landmarkType = "7">
          </BreakpointContent>
@@ -158,8 +158,8 @@
             filePath = "WhoFirst/Challenge/ChallengeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
             landmarkName = "checkStatus()"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,8 +174,8 @@
             filePath = "WhoFirst/Challenge/ChallengeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "checkStatus()"
             landmarkType = "7">
          </BreakpointContent>
