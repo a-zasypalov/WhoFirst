@@ -119,6 +119,9 @@ struct ChallengeStatusView: View {
                     }
                 }.padding()
             }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                viewModel.getChallenge()
+            }
         }
     }
     

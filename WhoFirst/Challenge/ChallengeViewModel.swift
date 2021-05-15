@@ -194,7 +194,8 @@ class ChallengeViewModel : ObservableObject {
                     df.dateFormat = "dd"
                     
                     if(lastRecord != nil) {
-                        if(df.string(from: now) == df.string(from: Date(timeIntervalSince1970: TimeInterval(lastRecord!.datetime) / 1000))) {
+                        if(df.string(from: now) == df.string(from: Date(timeIntervalSince1970: TimeInterval(lastRecord!.datetime) / 1000))
+                        || now > Date(timeIntervalSince1970: TimeInterval(lastRecord!.datetime) / 1000)) {
                             //If the record is in future
                             self.current = lastRecord
                             self.checkStatus()
