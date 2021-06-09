@@ -11,7 +11,9 @@ target 'WhoFirst' do
   
   pod 'Firebase/Analytics'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Messaging'
   pod 'FirebaseFirestoreSwift'
+  pod 'Firebase/Auth'
 
   target 'WhoFirstTests' do
     inherit! :search_paths

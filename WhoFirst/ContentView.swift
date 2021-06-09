@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ContentView: View {
     let buttonColor = Color(red: 77.0/255.0, green: 97.0/255.0, blue: 252.0/255.0, opacity: 1.0)
@@ -76,6 +77,8 @@ struct AlertButtonExit: View {
                   primaryButton: .destructive(Text("Ок")) {
                     self.user = nil
                     UserDefaults.standard.set(nil, forKey: UserDefaultsKeys.userKey)
+                    do { try Auth.auth().signOut() }
+                    catch { print("already logged out") }
                   },
                   secondaryButton: .cancel(Text("Отмена"))
             )}

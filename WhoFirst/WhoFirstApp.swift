@@ -12,8 +12,11 @@ import Firebase
 struct WhoFirstApp: App {
     
     init() {
-        FirebaseApp.configure()
+//        FirebaseApp.configure()
+        FirebaseConfiguration.shared.setLoggerLevel(.min)
     }
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
         WindowGroup {

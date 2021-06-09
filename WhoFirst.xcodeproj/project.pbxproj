@@ -17,7 +17,6 @@
 		AC763CE2264C85BC00D337C2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC763CE1264C85BC00D337C2 /* Preview Assets.xcassets */; };
 		AC763CED264C85BC00D337C2 /* WhoFirstTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC763CEC264C85BC00D337C2 /* WhoFirstTests.swift */; };
 		AC763CF8264C85BC00D337C2 /* WhoFirstUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC763CF7264C85BC00D337C2 /* WhoFirstUITests.swift */; };
-		AC763D06264C85C400D337C2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC763D05264C85C400D337C2 /* GoogleService-Info.plist */; };
 		AC763D07264C863400D337C2 /* Pods_WhoFirst.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE1D0B032F5CE9A11BA37B78 /* Pods_WhoFirst.framework */; };
 		AC7706A7264D821D00D48192 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = AC7706A6264D821D00D48192 /* SwiftUIX */; };
 		AC7706A9264D843200D48192 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7706A8264D843200D48192 /* UserDefaultsKeys.swift */; };
@@ -25,6 +24,10 @@
 		AC7706AD264D8ABC00D48192 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7706AC264D8ABC00D48192 /* Challenge.swift */; };
 		AC7706AF264D8EE100D48192 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7706AE264D8EE100D48192 /* Record.swift */; };
 		ACABB074264D2B9100A1EF18 /* ChallengeStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACABB073264D2B9100A1EF18 /* ChallengeStatusView.swift */; };
+		ACBFAC502662C72800A5D131 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBFAC4F2662C72800A5D131 /* AppDelegate.swift */; };
+		ACBFAC592662CAD300A5D131 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACBFAC582662CAD300A5D131 /* GoogleService-Info.plist */; };
+		ACBFAC5A2662CAD300A5D131 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACBFAC582662CAD300A5D131 /* GoogleService-Info.plist */; };
+		ACBFAC5B2662CAD300A5D131 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACBFAC582662CAD300A5D131 /* GoogleService-Info.plist */; };
 		ACCAD327264F261D0072237E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCAD326264F261D0072237E /* Reachability.swift */; };
 		EFF255DD92DE3C5756CC5E44 /* Pods_WhoFirstTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC5743215C947BFA2749EF69 /* Pods_WhoFirstTests.framework */; };
 /* End PBXBuildFile section */
@@ -66,12 +69,14 @@
 		AC763CF3264C85BC00D337C2 /* WhoFirstUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhoFirstUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC763CF7264C85BC00D337C2 /* WhoFirstUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoFirstUITests.swift; sourceTree = "<group>"; };
 		AC763CF9264C85BC00D337C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AC763D05264C85C400D337C2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AC7706A8264D843200D48192 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		AC7706AA264D88F200D48192 /* ChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeViewModel.swift; sourceTree = "<group>"; };
 		AC7706AC264D8ABC00D48192 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		AC7706AE264D8EE100D48192 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		ACABB073264D2B9100A1EF18 /* ChallengeStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeStatusView.swift; sourceTree = "<group>"; };
+		ACBFAC4F2662C72800A5D131 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ACBFAC512662C8FF00A5D131 /* WhoFirst.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WhoFirst.entitlements; sourceTree = "<group>"; };
+		ACBFAC582662CAD300A5D131 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ACCAD326264F261D0072237E /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		AE7C24E3ACC7785641766138 /* Pods-WhoFirstTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoFirstTests.release.xcconfig"; path = "Target Support Files/Pods-WhoFirstTests/Pods-WhoFirstTests.release.xcconfig"; sourceTree = "<group>"; };
 		E770EC3575B0534274B11418 /* Pods-WhoFirst-WhoFirstUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoFirst-WhoFirstUITests.release.xcconfig"; path = "Target Support Files/Pods-WhoFirst-WhoFirstUITests/Pods-WhoFirst-WhoFirstUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +147,7 @@
 		AC763CCE264C85BB00D337C2 = {
 			isa = PBXGroup;
 			children = (
+				ACBFAC582662CAD300A5D131 /* GoogleService-Info.plist */,
 				AC763CD9264C85BB00D337C2 /* WhoFirst */,
 				AC763CEB264C85BC00D337C2 /* WhoFirstTests */,
 				AC763CF6264C85BC00D337C2 /* WhoFirstUITests */,
@@ -164,6 +170,7 @@
 		AC763CD9264C85BB00D337C2 /* WhoFirst */ = {
 			isa = PBXGroup;
 			children = (
+				ACBFAC512662C8FF00A5D131 /* WhoFirst.entitlements */,
 				AC16B438264D382200D63AE6 /* Data */,
 				AC16B430264D2CC700D63AE6 /* Login */,
 				ACABB072264D2B7A00A1EF18 /* Challenge */,
@@ -171,9 +178,9 @@
 				AC763CDC264C85BB00D337C2 /* ContentView.swift */,
 				AC763CDE264C85BC00D337C2 /* Assets.xcassets */,
 				AC763CE3264C85BC00D337C2 /* Info.plist */,
-				AC763D05264C85C400D337C2 /* GoogleService-Info.plist */,
 				AC763CE0264C85BC00D337C2 /* Preview Content */,
 				ACCAD326264F261D0072237E /* Reachability.swift */,
+				ACBFAC4F2662C72800A5D131 /* AppDelegate.swift */,
 			);
 			path = WhoFirst;
 			sourceTree = "<group>";
@@ -342,7 +349,7 @@
 			files = (
 				AC763CE2264C85BC00D337C2 /* Preview Assets.xcassets in Resources */,
 				AC763CDF264C85BC00D337C2 /* Assets.xcassets in Resources */,
-				AC763D06264C85C400D337C2 /* GoogleService-Info.plist in Resources */,
+				ACBFAC592662CAD300A5D131 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +357,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACBFAC5A2662CAD300A5D131 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +365,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACBFAC5B2662CAD300A5D131 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +479,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACBFAC502662C72800A5D131 /* AppDelegate.swift in Sources */,
 				ACABB074264D2B9100A1EF18 /* ChallengeStatusView.swift in Sources */,
 				AC7706AD264D8ABC00D48192 /* Challenge.swift in Sources */,
 				AC7706AF264D8EE100D48192 /* Record.swift in Sources */,
@@ -638,10 +648,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WhoFirst/WhoFirst.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WhoFirst/Preview Content\"";
-				DEVELOPMENT_TEAM = 55554XNCXE;
+				DEVELOPMENT_TEAM = D5JDEB6J6T;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = WhoFirst/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -649,7 +661,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gaoyun.WhoFirst;
+				MARKETING_VERSION = 0.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gaoyun.whofirstapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -663,10 +676,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WhoFirst/WhoFirst.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WhoFirst/Preview Content\"";
-				DEVELOPMENT_TEAM = 55554XNCXE;
+				DEVELOPMENT_TEAM = D5JDEB6J6T;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = WhoFirst/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -674,7 +689,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gaoyun.WhoFirst;
+				MARKETING_VERSION = 0.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gaoyun.whofirstapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
