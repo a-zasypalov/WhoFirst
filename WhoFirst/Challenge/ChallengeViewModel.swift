@@ -31,7 +31,7 @@ class ChallengeViewModel : ObservableObject {
     
     private let db = Firestore.firestore()
     
-    let showerChallenge = "Shower-test"
+    let showerChallenge = "Shower"
     
     func getChallenge() {
         db.collection("challenges").document(showerChallenge)

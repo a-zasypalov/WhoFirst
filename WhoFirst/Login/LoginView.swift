@@ -42,10 +42,11 @@ struct LoginView: View {
                         .padding(.bottom, 20)
                     
                     VStack(alignment: .center, spacing: 20){
-                        TextField("Логин", text: self.$login)
+                        TextField("E-mail", text: self.$login)
                             .padding()
                             .background(colorScheme == .light ? lightGreyColor : darkGreyColor)
                             .cornerRadius(5)
+                            .autocapitalization(.none)
                             .padding(.bottom, 15)
                         
                         SecureField("Пароль", text: self.$password)
